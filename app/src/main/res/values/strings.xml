@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">HollywoodCelebritiesDatabase</string>
+    <string name="hollywood_celebrities_app">Hollywood Celebrities App</string>
+    <string name="add_a_celebrity">Add a Celebrity</string>
+    <string name="view_all_celebrities">View All Celebrities</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="add_celebrity">Add Celebrity</string>
+</resources>
