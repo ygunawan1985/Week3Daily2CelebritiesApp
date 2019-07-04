@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.hollywoodcelebritiesdatabase.model.Celebrity.Celebrity;
 import com.example.hollywoodcelebritiesdatabase.model.datasource.local.database.CelebrityDatabaseHelper;
@@ -28,11 +29,14 @@ public class ViewCelebrities extends AppCompatActivity {
         setContentView(R.layout.activity_view_celebrities);
 
         Intent passedIntent = getIntent();
-        Bundle passedBundle = passedIntent.getExtras();
 
-        if(passedBundle != null){
-            Celebrity celebrity = passedBundle.getParcelable("celebrity");
-            celebrityDatabaseHelper.insertCelebrity(celebrity);
+        if(passedIntent != null) {
+            Bundle passedBundle = passedIntent.getExtras();
+
+            if (passedBundle != null) {
+                Celebrity celebrity = passedBundle.getParcelable("celebrity");
+                celebrityDatabaseHelper.insertCelebrity(celebrity);
+            }
         }
 
         CelebrityListAdapter celebrityListAdapter = new CelebrityListAdapter(celebrityDatabaseHelper.getAllCelebrities());
@@ -42,5 +46,22 @@ public class ViewCelebrities extends AppCompatActivity {
         rvCelebritiesList.setAdapter(celebrityListAdapter);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
 
+    public void onClick(View view) {
+        switch(view.getId()) {
+            case R.id.btnAddCelebrity:
+                Intent addCelebrityIntent = new Intent(this, AddNewCelebrity.class);
+                startActivity(addCelebrityIntent);
+                break;
+            case R.id.btnHome:
+                Intent homeIntent = new Intent(this, MainActivity.class);
+                startActivity(homeIntent);
+                break;
+        }
+
+    }
 }

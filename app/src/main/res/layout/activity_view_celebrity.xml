@@ -56,10 +56,55 @@
 
     <TextView
         android:id="@+id/tvIsFavorite"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/tvPicture"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
+
+    <ImageButton
+        android:id="@+id/ibDelete"
+        android:tooltipText="Click here to delete this celebrity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tvIsFavorite"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/ibFavorite"
+        app:srcCompat="@android:drawable/ic_menu_delete"
+        android:onClick="onClick"/>
+
+    <ImageButton
+        android:id="@+id/ibFavorite"
+        android:tooltipText="Add as your Favorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tvIsFavorite"
+        app:layout_constraintStart_toEndOf="@id/ibDelete"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@android:drawable/btn_star_big_on"
+        android:onClick="onClick"/>
+
+    <Button
+        android:id="@+id/btnUpdateCelebrity"
+        android:text="@string/update_celebrity"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/ibDelete"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:onClick="onClick"/>
+
+    <Button
+        android:id="@+id/btnViewAllCelebrities"
+        android:text="@string/view_all_celebrities"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/btnUpdateCelebrity"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:onClick="onClick" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

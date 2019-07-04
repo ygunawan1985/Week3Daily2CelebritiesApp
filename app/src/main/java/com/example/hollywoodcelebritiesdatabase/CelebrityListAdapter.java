@@ -30,7 +30,7 @@ public class CelebrityListAdapter extends RecyclerView.Adapter<CelebrityListAdap
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        final Celebrity celebrity = celebrities.get(position);
+        Celebrity celebrity = celebrities.get(position);
         holder.tvFirstName.setText(celebrity.getFirstName());
         holder.tvLastName.setText(celebrity.getLastName());
         holder.tvMostPopularMovie.setText(celebrity.getMostPopularMovie());

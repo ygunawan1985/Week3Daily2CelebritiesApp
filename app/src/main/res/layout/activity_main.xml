@@ -51,6 +51,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="onClick" />
+
+        <Button
+            android:id="@+id/btnDisplayFavorites"
+            android:text="Display Favorite Celebrities"
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onClick" />
+
+        <Button
+            android:id="@+id/btnFileIO"
+            android:text="File Input/Output Storage"
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onClick" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,6 +12,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.example.hollywoodcelebritiesdatabase.model.Celebrity.Celebrity;
+import com.example.hollywoodcelebritiesdatabase.model.datasource.local.database.CelebrityDatabaseHelper;
 
 import java.io.ByteArrayOutputStream;
 
@@ -26,12 +27,14 @@ public class AddNewCelebrity extends AppCompatActivity {
     EditText etPicture;
     RadioGroup radioIsFavoriteGroup;
     RadioButton radioIsFavoriteButton;
+    CelebrityDatabaseHelper databaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_celebrity);
 
+        databaseHelper = new CelebrityDatabaseHelper(this);
         etFirstName = findViewById(R.id.etFirstName);
         etLastName = findViewById(R.id.etLastName);
         etMostPopularMovie = findViewById(R.id.etMostPopularMovie);
@@ -48,17 +51,17 @@ public class AddNewCelebrity extends AppCompatActivity {
         int selectedFav = radioIsFavoriteGroup.getCheckedRadioButtonId();
         radioIsFavoriteButton = findViewById(selectedFav);
 
-        final String firstName = etFirstName.getText().toString();
-        final String lastName = etLastName.getText().toString();
-        final String mostPopularMovie = etMostPopularMovie.getText().toString();
-        final String recentScandal = etRecentScandal.getText().toString();
+        String firstName = etFirstName.getText().toString();
+        String lastName = etLastName.getText().toString();
+        String mostPopularMovie = etMostPopularMovie.getText().toString();
+        String recentScandal = etRecentScandal.getText().toString();
         boolean isAlive;
         if(radioIsAliveButton.getText().toString().equalsIgnoreCase("Yes")){
             isAlive = true;
         } else {
             isAlive = false;
         }
-        final String picture = etPicture.getText().toString();
+        String picture = etPicture.getText().toString();
         boolean isFavorite;
         if(radioIsFavoriteButton.getText().toString().equalsIgnoreCase("Yes")){
             isFavorite = true;
@@ -79,12 +82,10 @@ public class AddNewCelebrity extends AppCompatActivity {
 //        image.compress(Bitmap.CompressFormat.JPEG, 100, stream);
 //        byte[] imageInByte = stream.toByteArray();
 
-        final Celebrity aCelebrity = new Celebrity(firstName, lastName, mostPopularMovie, recentScandal, isAlive, picture, isFavorite);
+        Celebrity aCelebrity = new Celebrity(firstName, lastName, mostPopularMovie, recentScandal, isAlive, picture, isFavorite);
+        databaseHelper.insertCelebrity(aCelebrity);
 
-        Intent addCelebrityIntent = new Intent(this, ViewCelebrities.class);
-        Bundle bundle = new Bundle();
-        bundle.putParcelable("celebrity", aCelebrity);
-        addCelebrityIntent.putExtras(bundle);
+        Intent addCelebrityIntent = new Intent(this, MainActivity.class);
         startActivity(addCelebrityIntent);
     }
 }

@@ -15,12 +15,18 @@ public class CelebrityDatabaseContract  {
     public static final String COLUMN_IS_FAVORITE = "is_favorite";
     public static final String DROP_QUERY = String.format("DROP TABLE %s", TABLE_NAME);
     public static final String SELECT_ALL_QUERY = String.format("SELECT * FROM %s", TABLE_NAME);
+    public static final String DELETE_FROM_QUERY = String.format("DELETE FROM %s", TABLE_NAME);
 
     public static String getCreateQuery() {
         return String.format(
                 Locale.US,
                 "CREATE TABLE %s( %s TEXT PRIMARY_KEY, %s TEXT, %s TEXT, %s TEXT, %s INTEGER, %s TEXT, %s INTEGER)",
                 TABLE_NAME, COLUMN_FIRST_NAME, COLUMN_LAST_NAME, COLUMN_MOST_POPULAR_MOVIE, COLUMN_RECENT_SCANDAL, COLUMN_IS_ALIVE, COLUMN_PICTURE, COLUMN_IS_FAVORITE);
+    }
+
+    public static String getDeleteFromQuery(String firstName, String lastName){
+
+        return String.format("%s WHERE %s = \'%s\' AND %s = \'%s\'", DELETE_FROM_QUERY, COLUMN_FIRST_NAME, firstName, COLUMN_LAST_NAME, lastName);
     }
 
     public static String getByIsFavorite(int isFavorite) {

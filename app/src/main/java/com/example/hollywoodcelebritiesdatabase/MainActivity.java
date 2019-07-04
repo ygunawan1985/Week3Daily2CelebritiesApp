@@ -26,6 +26,14 @@ public class MainActivity extends AppCompatActivity {
                 Intent viewCelebritiesIntent = new Intent(this, ViewCelebrities.class);
                 startActivity(viewCelebritiesIntent);
                 break;
+            case R.id.btnDisplayFavorites:
+                Intent displayFavoritesIntent = new Intent(this, DisplayFavorites.class);
+                startActivity(displayFavoritesIntent);
+                break;
+            case R.id.btnFileIO:
+                Intent fileIOIntent = new Intent(this, FileIO.class);
+                startActivity(fileIOIntent);
+                break;
         }
     }
 }

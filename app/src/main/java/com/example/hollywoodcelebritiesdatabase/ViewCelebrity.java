@@ -4,9 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.hollywoodcelebritiesdatabase.model.Celebrity.Celebrity;
+import com.example.hollywoodcelebritiesdatabase.model.datasource.local.database.CelebrityDatabaseHelper;
 
 public class ViewCelebrity extends AppCompatActivity {
 
@@ -17,6 +21,8 @@ public class ViewCelebrity extends AppCompatActivity {
     TextView tvIsAlive;
     TextView tvPicture;
     TextView tvIsFavorite;
+    Celebrity celebrity;
+    CelebrityDatabaseHelper celebrityDatabaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,10 +36,11 @@ public class ViewCelebrity extends AppCompatActivity {
         tvIsAlive = findViewById(R.id.tvIsAlive);
         tvPicture = findViewById(R.id.tvPicture);
         tvIsFavorite = findViewById(R.id.tvIsFavorite);
+        celebrityDatabaseHelper = new CelebrityDatabaseHelper(this);
 
         Intent intent = getIntent();
         if(intent != null) {
-            Celebrity celebrity = intent.getParcelableExtra("celebrity");
+            celebrity = intent.getParcelableExtra("celebrity");
             if(celebrity != null){
                 tvFirstName.setText(celebrity.getFirstName());
                 tvLastName.setText(celebrity.getLastName());
@@ -55,6 +62,39 @@ public class ViewCelebrity extends AppCompatActivity {
 
 
             }
+        }
+    }
+
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.ibDelete:
+                celebrityDatabaseHelper.deleteCelebrity(celebrity);
+                Intent deleteIntent = new Intent(this, MainActivity.class);
+                startActivity(deleteIntent);
+                break;
+            case R.id.btnUpdateCelebrity:
+                Intent updateIntent = new Intent(this, UpdateCelebrity.class);
+                Bundle toUpdateBundle = new Bundle();
+                toUpdateBundle.putParcelable("updateCelebrity", celebrity);
+                updateIntent.putExtras(toUpdateBundle);
+                startActivity(updateIntent);
+                break;
+            case R.id.ibFavorite:
+                if(!celebrity.isFavorite()){
+                    celebrity.setFavorite(true);
+                    celebrityDatabaseHelper.updateCelebrity(celebrity);
+                    Toast.makeText(this, "Added as a Favorite", Toast.LENGTH_SHORT).show();
+                    finish();
+                    startActivity(getIntent());
+                } else {
+                    Toast.makeText(this, "Already a Favorite", Toast.LENGTH_SHORT).show();
+                }
+
+                break;
+            case R.id.btnViewAllCelebrities:
+                Intent viewCelebritiesIntent = new Intent(this, ViewCelebrities.class);
+                startActivity(viewCelebritiesIntent);
+                break;
         }
     }
 }
