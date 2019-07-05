@@ -6,4 +6,24 @@
     android:layout_height="match_parent"
     tools:context=".FileIO">
 
+    <Button
+        android:id="@+id/btnSaveFile"
+        android:text="@string/save_data_to_a_file"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:onClick="onClick"/>
+
+    <Button
+        android:id="@+id/btnReadFile"
+        android:text="@string/read_data_from_a_file"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/btnSaveFile"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:onClick="onClick"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

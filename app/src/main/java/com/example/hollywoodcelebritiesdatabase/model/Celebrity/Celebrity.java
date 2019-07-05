@@ -119,4 +119,17 @@ public class Celebrity implements Parcelable {
         parcel.writeString(picture);
         parcel.writeByte((byte) (isFavorite ? 1 : 0));
     }
+
+    @Override
+    public String toString() {
+        return "Celebrity{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", mostPopularMovie='" + mostPopularMovie + '\'' +
+                ", recentScandal='" + recentScandal + '\'' +
+                ", isAlive=" + isAlive +
+                ", picture='" + picture + '\'' +
+                ", isFavorite=" + isFavorite +
+                '}';
+    }
 }

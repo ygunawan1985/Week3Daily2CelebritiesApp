@@ -8,4 +8,6 @@
     <string name="add_celebrity">Add Celebrity</string>
     <string name="update_celebrity">Update Celebrity</string>
     <string name="go_to_home">Go to Home</string>
+    <string name="save_data_to_a_file">Save Data to a File</string>
+    <string name="read_data_from_a_file">Read Data From a File</string>
 </resources>
